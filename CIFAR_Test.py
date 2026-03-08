@@ -60,5 +60,6 @@ if __name__ == '__main__':
         ceshi_cnn(model_cnn_common, "cnn", trainloader)
         for i in acc_list.keys():
             writer.add_text(i+"train",str(acc_list[i]))
+        print(acc_list)
     else:
         print("模型不存在")
