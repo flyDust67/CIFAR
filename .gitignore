@@ -13,7 +13,7 @@ __pycache__/
 
 #忽略日志文件
 runs/
-
+runs_/
 #忽略模型文件
 models/
 all_models/

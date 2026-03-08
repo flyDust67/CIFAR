@@ -2,6 +2,7 @@ from CIFAR_Cnnmodel import *
 from CIFAR_Cnnmodel_common import  *
 from CIFAR_Mlpmodel import *
 from tqdm import tqdm
+from datetime import  datetime
 from torch.utils.tensorboard import SummaryWriter
 import os
 
