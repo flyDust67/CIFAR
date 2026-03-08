@@ -50,7 +50,7 @@ def train_mlp(epoch,model,name):
 if __name__ == '__main__':
     np.random.seed(42)
     torch.manual_seed(42)
-    for epoch in range(1, 11):
+    for epoch in range(1, 51):
         train(epoch,model_cnn,"带残差的CNN")
         train(epoch,model_cnn_common,"一般CNN")
         train_mlp(epoch,model_mlp,"MLP")
