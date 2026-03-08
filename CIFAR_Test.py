@@ -4,7 +4,7 @@ from CIFAR_Cnnmodel_common import *
 from CIFAR_Mlpmodel import *
 
 from tqdm import tqdm
-from CIFAR_Train import save_path, save_dir,os
+from CIFAR_Train import save_path, save_dir, os, writer
 
 #存储数据
 acc_list = {"cnn":0,"cnn_resnet":0,"mlp":0}
@@ -50,5 +50,7 @@ if __name__ == '__main__':
         ceshi_cnn(model_cnn,"cnn_resnet")
         ceshi_cnn(model_cnn_common,"cnn")
         print(acc_list)
+        for i in acc_list.keys():
+            writer.add_text(i,str(acc_list[i]))
     else:
         print("模型不存在")

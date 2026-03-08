@@ -17,7 +17,7 @@ model_mlp=Mlp_Model().to(device)
 writer = SummaryWriter()
 
 #常规训练
-def train(epoch,model):
+def train(epoch,model,name):
     model.train()
     train_loss = 0
     for batch_idx, (inputs, targets) in tqdm(enumerate(trainloader)):
@@ -29,8 +29,9 @@ def train(epoch,model):
         model.optimizer.step()
         train_loss += loss.item()
     print(f'Epoch {epoch} | Loss: {train_loss/len(trainloader):.3f}')
+    writer.add_scalar(name+'loss',train_loss/len(trainloader),epoch)
 
-def train_mlp(epoch,model):
+def train_mlp(epoch,model,name):
     model.train()
     train_loss = 0
     for batch_idx, (inputs, targets) in tqdm(enumerate(trainloader)):
@@ -43,15 +44,16 @@ def train_mlp(epoch,model):
         model.optimizer.step()
         train_loss += loss.item()
     print(f'Epoch {epoch} | Loss: {train_loss / len(trainloader):.3f}')
+    writer.add_scalar(name+'loss', train_loss / len(trainloader), epoch)
 
 #训练
 if __name__ == '__main__':
     np.random.seed(42)
     torch.manual_seed(42)
-    for epoch in range(1, 4):
-        train(epoch,model_cnn)
-        train(epoch,model_cnn_common)
-        train_mlp(epoch,model_mlp)
+    for epoch in range(1, 11):
+        train(epoch,model_cnn,"带残差的CNN")
+        train(epoch,model_cnn_common,"一般CNN")
+        train_mlp(epoch,model_mlp,"MLP")
 
     # 确保文件夹存在
 
