@@ -1,4 +1,5 @@
 from torch.utils.data import dataset
+from torch.utils.tensorboard import SummaryWriter
 
 from CIFAR_Data import *
 from CIFAR_Cnnmodel import *
@@ -6,11 +7,9 @@ from CIFAR_Cnnmodel_common import *
 from CIFAR_Mlpmodel import *
 
 from tqdm import tqdm
-from CIFAR_Train import save_path, save_dir, os, writer
-
+from CIFAR_Train import save_path, save_dir, os
 #存储数据
 acc_list = {"cnn":0,"cnn_resnet":0,"mlp":0}
-
 
 def ceshi_cnn(model,name,dataset_):
     acc_all=0
@@ -42,6 +41,7 @@ if __name__ == '__main__':
 
     #加载模型
     if  os.path.exists(save_dir):
+        writer=SummaryWriter()
         model_cnn_common=CNN().to(device)
         model_mlp=Mlp_Model().to(device)
         model_cnn = CNN_Model_SimpleResNet().to(device)
